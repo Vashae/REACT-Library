@@ -19,7 +19,7 @@ const Highlights = () => {
                         title="10,000 Books" 
                         para="Library has books in all your favorite categories." 
                         />
-                         <Highlight icon={  <FontAwesomeIcon icon="bolt" /> } 
+                         <Highlight icon={  <FontAwesomeIcon icon="tags" /> } 
                         title="Affordable" 
                         para=" Get your hands on popular books for less than $10." 
                         />
