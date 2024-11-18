@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Cart = (cart) => {
+const Cart = ({cart, changeQuantity}) => {
   return (
   <div id="booksbody">
     <main className="books__main">
@@ -26,7 +26,7 @@ const Cart = (cart) => {
                                         <span className="cart__book--title">
                                            {book.title}
                                         </span>
-                                        <span className="cart__book--price">{book.salePrice || book.originalPrice}
+                                        <span className="cart__book--price">{(book.salePrice || book.originalPrice).toFixed(2)}
                                         </span>
                                         <button className="cart__book--remove">
                                             Remove
@@ -34,34 +34,17 @@ const Cart = (cart) => {
                                     </div>
                                 </div>
                                 <div className="cart__quantity">
-                                    <input type="number" min={0} max={99} className="cart__input" />
+                                    <input type="number" min={0} max={99}  className="cart__input" value={book.quantity}
+                                    onChange={(event) =>
+                                     changeQuantity(book, event.target.value)
+                                     }
+                                     />
                                 </div>
                                 <div className="cart__total">
-                                    $10
+                                {(book.salePrice || book.originalPrice) * book.quantity}
                                 </div>
-                            </div>)
+                            </div>);
                         })}
-                        <div className="cart__item">
-                            <div className="cart__book">
-                                <img src="https://m.media-amazon.com/images/I/61mIq2iJUXL._AC_UF1000,1000_QL80_.jpg" alt="" className="cart__book--img"/>
-                                <div className="cart__book--info">
-                                    <span className="cart__book--title">
-                                        Crack the Coding interview
-                                    </span>
-                                    <span className="cart__book--price">$10
-                                    </span>
-                                    <button className="cart__book--remove">
-                                        Remove
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="cart__quantity">
-                                <input type="number" min={0} max={99} className="cart__input" />
-                            </div>
-                            <div className="cart__total">
-                                $10
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div className="total">

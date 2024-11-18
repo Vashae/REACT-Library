@@ -15,8 +15,21 @@ import Cart from './pages/Cart.jsx';
 
 function App (){
   const [cart, setCart] = useState([]);
-  function addToCart (book){
-    setCart ([...cart, book])
+  function addToCart (book) {
+    setCart ([...cart, {...book, quantity: 1}]);
+  }
+  function changeQuantity (book, quantity) {
+    setCart (
+      cart.map((item) => 
+       item.id === book.id
+  ? {
+    ...item,
+    quantity: +quantity,
+  }
+  :item
+      
+    )
+  );
   }
   useEffect(() => {
     console.log(cart);
@@ -29,8 +42,8 @@ function App (){
   <Routes>
      <Route path="/" exact element= {<Home />} />
     <Route path ="/books" exact element={<Books books={books}/>}/>
-    <Route path ="/books/:id" exact element={<BookInfo books={books} addToCart={addToCart}/>}/>
-    <Route path ="/cart" exact element={<Cart books={books} cart={cart}/>}/>
+    <Route path ="/books/:id" exact element={<BookInfo books={books} addToCart={addToCart} cart={cart}/>}/>
+    <Route path ="/cart" exact element={<Cart books={books} cart={cart}/>} changeQuantity={changeQuantity}/>
     </Routes>
      <Footer />
      </div>
