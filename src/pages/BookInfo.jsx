@@ -4,10 +4,24 @@ import { Link, useParams } from 'react-router-dom'
 import Rating from '../components/ui.jsx/Rating'
 import Price from '../components/ui.jsx/Price'
 import Book from '../components/ui.jsx/Book'
-const BookInfo= ({ books }) => {
+
+
+const BookInfo= ({ books, addToCart, cart }) => {
     const {id} = useParams();
-    const book = books.find(book => +book.id === +id)
-  return (
+    const book = books.find((book) => +book.id === +id)
+    
+
+    function addBookToCart(book) {
+      addToCart(book);
+}
+ 
+
+
+function bookExistsOnCart () {
+    return cart.find(book => book.id === +id);
+};
+  
+    return (
     <div id="books__body">
         <main id="books__main">
             <div className="books__container">
@@ -19,6 +33,7 @@ const BookInfo= ({ books }) => {
                         <Link to ="/books" className="book__link">
                         <h2 className="book__selected--title--top">
                         </h2>
+                        </Link>
                         <div className="book__selected">
                             <figure className="book__selected--figure">
                                 <img src={book.url} alt="" className='book__selected--img' />
@@ -42,12 +57,18 @@ const BookInfo= ({ books }) => {
                                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia natus magni ducimus quod a cumque suscipit laborum tempora. Totam voluptatum animi rem dolorem nobis maiores, consequatur vitae fugiat accusantium eveniet.
                                     </p>
                                   </div>
-                                  <button className="btn">
-                                    Add to Cart
-                                  </button>
+                                  { bookExistsOnCart() ? (
+                                    <button className="btn">Checkout</button>
+                                 ) : (
+                                        <button className="btn" onClick ={() => addBookToCart(book) }>
+                                        Add to Cart
+                                      </button>
+
+                                    )}
+                                 
                             </div>
                         </div>
-                        </Link>
+                       
 
                     </div>
                 </div>

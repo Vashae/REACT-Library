@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Cart = () => {
+const Cart = (cart) => {
   return (
   <div id="booksbody">
     <main className="books__main">
@@ -18,6 +18,29 @@ const Cart = () => {
                         <span className="cart_total">Price</span>
                     </div>
                     <div className="cart__body">
+                        {cart.map((book)=>{
+                            return ( <div className="cart__item">
+                                <div className="cart__book">
+                                    <img src={book.url} alt="" className="cart__book--img"/>
+                                    <div className="cart__book--info">
+                                        <span className="cart__book--title">
+                                           {book.title}
+                                        </span>
+                                        <span className="cart__book--price">{book.salePrice || book.originalPrice}
+                                        </span>
+                                        <button className="cart__book--remove">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="cart__quantity">
+                                    <input type="number" min={0} max={99} className="cart__input" />
+                                </div>
+                                <div className="cart__total">
+                                    $10
+                                </div>
+                            </div>)
+                        })}
                         <div className="cart__item">
                             <div className="cart__book">
                                 <img src="https://m.media-amazon.com/images/I/61mIq2iJUXL._AC_UF1000,1000_QL80_.jpg" alt="" className="cart__book--img"/>
@@ -54,7 +77,7 @@ const Cart = () => {
                         <span>Total</span>
                         <span>$10.00</span>
                          </div>
-                         <button className="btn btn__checkout no--cursor" onClick={()=> alert(`Havent gotten around to doing this:(`)}>
+                         <button className="btn btn__checkout no--cursor" onClick={()=> alert(`Havent gotten around to doing this :(`)}>
                             Proceed to Checkout
                          </button>
                 </div>
