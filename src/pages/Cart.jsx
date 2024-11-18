@@ -35,7 +35,7 @@ const Cart = ({cart, changeQuantity}) => {
                                 </div>
                                 <div className="cart__quantity">
                                     <input type="number" min={0} max={99}  className="cart__input" value={book.quantity}
-                                    onChange={(event) =>
+                                    onChange = {(event) =>
                                      changeQuantity(book, event.target.value)
                                      }
                                      />

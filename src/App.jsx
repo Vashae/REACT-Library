@@ -43,7 +43,8 @@ function App (){
      <Route path="/" exact element= {<Home />} />
     <Route path ="/books" exact element={<Books books={books}/>}/>
     <Route path ="/books/:id" exact element={<BookInfo books={books} addToCart={addToCart} cart={cart}/>}/>
-    <Route path ="/cart" exact element={<Cart books={books} cart={cart}/>} changeQuantity={changeQuantity}/>
+    <Route path ="/cart" exact element={<Cart cart={cart} changeQuantity={changeQuantity} />} >
+    </Route>
     </Routes>
      <Footer />
      </div>
