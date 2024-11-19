@@ -84,7 +84,7 @@ function bookExistsOnCart () {
                         </h2>
                     </div>
                     <div className="books">
-                    ${books
+                    {books
                     .filter((book)=> book.rating === 5 && +book.id !== +id)
                     .slice(0,4)
                     .map(book => <Book book={book} key={book.id}/>)}
